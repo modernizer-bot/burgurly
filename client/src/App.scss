@@ -1,0 +1,11 @@
+.app {
+  display: grid;
+  grid-template-columns:
+    [full-start sidebar-start] minmax(6rem, 10rem)
+    [sidebar-end content-start] repeat(
+      12,
+      [col-start] minmax(min-content, 10rem) [col-end]
+    )
+    [content-end] minmax(6rem, 1fr) [full-end];
+  grid-auto-rows: min-content;
+}
