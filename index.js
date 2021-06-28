@@ -14,6 +14,8 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useUnifiedTopology: true },()=>{console.log('connected to mongodb');})
-
+// const User=mongoose.model('users');
+// User.find({}).then((result)=>console.log(result))
+// .catch((err)=>console.log(err))
 require('./routes/authRoutes')(app);
 app.listen(5000);
