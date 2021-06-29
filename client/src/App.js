@@ -3,7 +3,17 @@ import './App.scss';
 import Header from './pages/Header/Header';
 import Sidebar from './pages/Sidebar/Sidebar';
 import Order from './pages/Order/Order.jsx';
+import {useDispatch} from 'react-redux'
+import { useEffect } from 'react';
+import { fetchUser } from './redux/auth/auth.action';
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUser());
+    return () => {
+      
+    }
+  }, [dispatch])
   // var options = {
   //   method: 'GET',
   //   url: 'https://api.spoonacular.com/food/menuItems/search',
