@@ -7,6 +7,12 @@ body {
 }
 html {
   font-size: 62.5%;
+  @media screen and (max-width: 900px) {
+    font-size: 56.25%;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 50%;
+  }
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
