@@ -8,8 +8,11 @@ const OrderItem = () => {
             <div className="orderitem__detail">
                 <div className="orderitem__detail-primary">
                     <div className="orderitem__detail-primary-description">
-                        <img src="" alt="order" />
-                        <div className="orderitem__detail-primary-description-heading heading-4">Spicy Seasoned...</div>
+                        <div className="orderitem__detail-primary-description-image"><img src="/burger.jpg" alt="order" /></div>
+                        <div className="orderitem__detail-primary-description-text">
+                            <div className="orderitem__detail-primary-description-text-heading heading-4">Spicy Seasoned...</div>
+                            <div className="orderitem__detail-primary-description-text-cost u-color-light heading-5">$ 2.7</div>
+                        </div>
                     </div>
                     <div className="orderitem__detail-primary-quantity"><Button type="backgroud-light">1</Button></div>
                     <div className="orderitem__detail-primary-price"><span className="u-margin-right-sm">$</span>5</div>

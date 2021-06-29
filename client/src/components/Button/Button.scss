@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .button--primary {
   height: 3.5rem;
@@ -17,9 +18,19 @@
   background-color: $background-color-light;
   // height: 4rem;
   padding: 1.25rem 2rem;
+  @media screen and (max-width: 1200px) {
+    padding: 1rem 1.75rem;
+  }
 }
 .button--ghost {
   border-radius: 1rem;
   border: 3px solid #ff7ca3;
   padding: 1rem;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.03) translateY(-1px);
+  }
+  @media screen and (max-width: 1200px) {
+    padding: 0.75rem;
+  }
 }
