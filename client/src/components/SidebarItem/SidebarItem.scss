@@ -9,8 +9,13 @@
   &--clicked {
     background-color: #252836;
   }
+  // @media screen and (max-width: 700px) {
+  //   height: 6rem;
+  // }
   @media screen and (max-width: 700px) {
     height: 6rem;
+    width: unset;
+    border-radius: 1.25rem 1.25rem 0 0;
   }
 }
 .svg-wrapper {

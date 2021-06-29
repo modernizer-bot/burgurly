@@ -1,4 +1,6 @@
 .app {
+  height: 100%;
+  overflow: hidden;
   display: grid;
   grid-template-columns:
     [full-start sidebar-start] minmax(6rem, 10rem)
@@ -11,11 +13,20 @@
 
   @media screen and (max-width: 700px) {
     grid-template-columns:
-      [full-start sidebar-start] 6rem
-      [sidebar-end content-start] repeat(
+      [full-start sidebar-start] minmax(min-content, 10rem)
+      [ content-start] repeat(
         12,
         [col-start] minmax(min-content, 10rem) [col-end]
       )
-      [content-end] minmax(6rem, 1fr) [full-end];
+      [content-end] minmax(6rem, 1fr) [sidebar-end full-end];
   }
+  // @media screen and (max-width: 700px) {
+  //   grid-template-columns:
+  //     [full-start sidebar-start] 6rem
+  //     [sidebar-end content-start] repeat(
+  //       12,
+  //       [col-start] minmax(min-content, 10rem) [col-end]
+  //     )
+  //     [content-end] minmax(6rem, 1fr) [full-end];
+  // }
 }
