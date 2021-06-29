@@ -7,13 +7,17 @@
   cursor: pointer;
 }
 .button--primary {
-  height: 3.5rem;
   background-color: $primary-color;
   svg path {
     fill: $white;
   }
 }
-
+.button--ordertype {
+  height: 3.5rem;
+}
+.button--orderpayment {
+  padding: 1rem;
+}
 .button--backgroud-light {
   background-color: $background-color-light;
   // height: 4rem;

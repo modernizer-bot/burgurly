@@ -11,7 +11,7 @@ const Order = () => {
         <div className={`${clicked && "order__clicked"} order`}>
         {window.innerWidth<700 && <div className={`${clicked ? "left" : "right"}`} onClick={()=>setclicked(!clicked)}>{clicked ? <Left/>:<Right />}</div>}
             <div className="order__heading heading-3">Orders #34562</div>
-            <div className="order__button"><Button type="primary">Dine In</Button></div>
+            <div className="order__button"><Button type="primary" config="ordertype">Dine In</Button></div>
             <div className="order__description">
                 <div className="order__description-item order__description-item-1">Item</div>
                 <div className="order__description-item order__description-item-2">Qty</div>
@@ -34,6 +34,7 @@ const Order = () => {
                 <div className="order__total-text u-color-light">Sub total</div>
                 <div className="order__total-number"><span className="u-margin-right-sm">$</span>21.03</div>
             </div>
+            <div className="order__payment"><Button type="primary" config="orderpayment">Continue to Payment</Button></div>
         </div>
         </>
     )

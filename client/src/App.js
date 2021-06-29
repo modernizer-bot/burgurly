@@ -1,6 +1,6 @@
 import './App.scss';
 // import axios from 'axios';
-import Header from './pages/Header/Header';
+import Header from './components/Header/Header';
 import Sidebar from './pages/Sidebar/Sidebar';
 import Order from './pages/Order/Order.jsx';
 import {useDispatch} from 'react-redux'

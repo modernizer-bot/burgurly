@@ -24,7 +24,10 @@ passport.use(new GoogleStrategy({
     if(results) done(null,results);
     else{
         const user=await new User({
-            googleId:profile.id
+            googleId:profile.id,
+            displayName:profile.displayName,
+            email:profile.emails,
+            photo:profile.photos
         }).save();
         done(null,user);
     }

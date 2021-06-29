@@ -1,0 +1,49 @@
+@import "../../styles/variables";
+.header {
+  display: grid;
+  grid-column: content-start / col-end 10;
+  background-color: #252836;
+  color: #fff;
+  height: 9rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  &__left {
+    margin-right: auto;
+
+    &-time {
+      color: $text-light;
+      font-size: 1.25rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__inputContainer {
+    background-color: $form-bg;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    input {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: $text-light;
+      font-size: 1.25rem;
+    }
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-right: 0.35rem;
+    }
+    svg rect {
+      fill: $white;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    grid-column: content-start / col-end 9;
+  }
+  @media screen and (max-width: 700px) {
+    grid-column: full-start / full-end;
+  }
+}
