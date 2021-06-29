@@ -1,12 +1,25 @@
+@import "../../styles/variables";
 .button {
-  width: 6rem;
-  height: 6rem;
-  background-color: #ea7c69;
   border-radius: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.button--primary {
+  height: 3.5rem;
+  background-color: $primary-color;
   svg path {
-    fill: #fff;
+    fill: $white;
   }
+}
+
+.button--backgroud-light {
+  background-color: $background-color-light;
+  // height: 4rem;
+  padding: 1.25rem 2rem;
+}
+.button--ghost {
+  border-radius: 1rem;
+  border: 3px solid #ff7ca3;
+  padding: 1rem;
 }

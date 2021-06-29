@@ -1,6 +1,46 @@
+@import "../../styles/variables";
 .order {
-  width: 51.2rem;
-  grid-column: col-start 10 / full-end;
-  background-color: #1f1d2b;
-  color: #fff;
+  grid-column: col-start 11 / full-end;
+  background-color: $background-color-dark;
+  color: $white;
+  padding: 2rem;
+  font-family: "Barlow";
+  font-weight: 600;
+  display: grid;
+  grid-template-columns:
+    [order-start] repeat(6, [col-start] minmax(4rem, 1fr) [col-end])
+    [order-end];
+  grid-auto-rows: min-content;
+  grid-row-gap: 2rem;
+  @media screen and (max-width: 1350px) {
+    grid-column: 11 / full-end;
+  }
+  &__heading {
+    grid-column: order-start / order-end;
+  }
+  &__button {
+    font-size: 1.25rem;
+  }
+  &__description {
+    grid-column: order-start / order-end;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    &-item {
+      &-2 {
+        justify-self: center;
+      }
+      &-3 {
+        justify-self: center;
+      }
+    }
+  }
+  &__item {
+    grid-column: order-start / order-end;
+  }
+  &::after {
+    content: "";
+    background-color: $background-color-light;
+    height: 0.25rem;
+    grid-column: order-start / order-end;
+  }
 }

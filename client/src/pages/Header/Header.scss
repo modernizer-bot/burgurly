@@ -1,6 +1,9 @@
 .header {
   display: grid;
-  grid-column: content-start / col-end 9;
+  grid-column: content-start / col-end 10;
   background-color: #252836;
   color: #fff;
+  @media screen and (max-width: 1350px) {
+    grid-column: content-start / col-end 9;
+  }
 }

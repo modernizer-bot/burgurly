@@ -1,3 +1,7 @@
+@import "./styles/variables";
+@import "./styles/_base.scss";
+@import "./styles/typography/typography";
+@import "./styles/utility/utility";
 .app {
   height: 100%;
   overflow: hidden;
@@ -8,7 +12,7 @@
       12,
       [col-start] minmax(min-content, 10rem) [col-end]
     )
-    [content-end] minmax(6rem, 1fr) [full-end];
+    [content-end] minmax(10rem, 1fr) [full-end];
   grid-auto-rows: min-content;
 
   @media screen and (max-width: 700px) {

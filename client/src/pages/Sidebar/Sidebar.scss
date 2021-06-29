@@ -1,8 +1,9 @@
+@import "../../styles/variables";
 .sidebar {
   grid-column: sidebar-start / sidebar-end;
-  background-color: #1f1d2b;
+  background-color: $background-color-dark;
   height: 100vh;
-  color: #ea7c69;
+  color: $primary-color;
   display: grid;
   justify-items: center;
   padding-top: 2rem;
