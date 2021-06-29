@@ -7,7 +7,7 @@ import {ReactComponent as Dashboard} from '../../assets/Dashboard.svg'
 import {ReactComponent as Message} from '../../assets/Message.svg'
 import {ReactComponent as Notification} from '../../assets/Notification.svg'
 import {ReactComponent as Setting} from '../../assets/Setting.svg'
-import {ReactComponent as Logout} from '../../assets/Logout.svg'
+import {ReactComponent as Logout} from '../../assets/logout.svg'
 import SidebarItem from '../../components/SidebarItem/SidebarItem'
 const Sidebar = () => {
     const arraylist=[{item:<Home/>, name:"home"},
