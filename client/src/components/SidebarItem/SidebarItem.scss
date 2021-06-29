@@ -9,6 +9,9 @@
   &--clicked {
     background-color: #252836;
   }
+  @media screen and (max-width: 700px) {
+    height: 6rem;
+  }
 }
 .svg-wrapper {
   width: 5rem;
@@ -24,6 +27,14 @@
     background-color: #ea7c69;
     svg path {
       fill: #fff;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    width: 3rem;
+    height: 3rem;
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }

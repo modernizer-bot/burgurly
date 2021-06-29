@@ -8,4 +8,14 @@
     )
     [content-end] minmax(6rem, 1fr) [full-end];
   grid-auto-rows: min-content;
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns:
+      [full-start sidebar-start] 6rem
+      [sidebar-end content-start] repeat(
+        12,
+        [col-start] minmax(min-content, 10rem) [col-end]
+      )
+      [content-end] minmax(6rem, 1fr) [full-end];
+  }
 }

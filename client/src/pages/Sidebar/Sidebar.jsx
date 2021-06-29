@@ -7,6 +7,7 @@ import {ReactComponent as Dashboard} from '../../assets/Dashboard.svg'
 import {ReactComponent as Message} from '../../assets/Message.svg'
 import {ReactComponent as Notification} from '../../assets/Notification.svg'
 import {ReactComponent as Setting} from '../../assets/Setting.svg'
+import {ReactComponent as Log} from '../../assets/log.svg'
 import SidebarItem from '../../components/SidebarItem/SidebarItem'
 const Sidebar = () => {
     const arraylist=[{item:<Home/>, name:"home"},
@@ -15,13 +16,13 @@ const Sidebar = () => {
                     {item:<Message/>,name:"message"},
                     {item:<Notification/>,name:"notification"},
                     {item:<Setting/>,name:"setting"},
+                    {item:<Log/>,name:"logout"},
                 ];
     return (
         <div className='sidebar'>
             <div className="sidebar__brand"><Logo/></div>
             {arraylist.map((item)=>{
-                return <SidebarItem>{item}</SidebarItem>
-
+                return <SidebarItem key={item.name}>{item}</SidebarItem>
             })}
         </div>
     )
