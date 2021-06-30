@@ -3,6 +3,7 @@
   &__detail {
     display: grid;
     grid-template-rows: repeat(2, 1fr);
+    user-select: none;
     &-primary {
       display: grid;
       grid-template-columns: 3fr 1fr 1fr;
@@ -12,6 +13,7 @@
       @media screen and (max-width: 1300px) {
         grid-template-columns: 3.5fr 1fr 1fr;
       }
+
       &-description {
         align-self: stretch;
         justify-self: start;
@@ -47,10 +49,14 @@
           &-heading {
             margin-bottom: 0.25rem;
           }
+          &-cost {
+            user-select: none;
+          }
         }
       }
 
       &-quantity {
+        user-select: none;
       }
     }
     &-secondary {
@@ -70,6 +76,7 @@
         align-items: center;
         background-color: $background-color-light;
         border-radius: 1rem;
+        user-select: none;
         input {
           font-size: 1.5rem;
           width: 100%;

@@ -25,7 +25,7 @@
   @media screen and (max-width: 700px) {
     position: absolute;
     right: 0;
-    top: 7rem;
+    top: 6.75rem;
     padding-top: 4rem;
     height: 100vh;
   }
@@ -34,6 +34,7 @@
   }
   &__button {
     font-size: 1.25rem;
+    user-select: none;
   }
   &__description {
     grid-column: order-start / order-end;
@@ -72,6 +73,7 @@
   &__discount {
     grid-column: order-start / order-end;
     display: flex;
+    user-select: none;
     &-text {
       margin-right: auto;
     }
@@ -79,12 +81,14 @@
   &__total {
     grid-column: order-start / order-end;
     display: flex;
+    user-select: none;
     &-text {
       margin-right: auto;
     }
   }
   &__payment {
     grid-column: order-start / order-end;
+    user-select: none;
   }
 }
 

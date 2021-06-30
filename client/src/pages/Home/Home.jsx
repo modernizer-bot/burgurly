@@ -4,6 +4,7 @@ import styled,{css} from 'styled-components'
 import Dishes from '../../components/Dishes/Dishes'
 import {useDispatch, useSelector} from 'react-redux';
 import { setdishsection } from '../../redux/Home/home.actions'
+
 const PseudoClass=css`
     color:#ea7c69;
     &::after{
@@ -20,6 +21,7 @@ const StyledItem=styled.div`
     position: relative;
     cursor:pointer;
     ${props=>props.section===props.name && PseudoClass} 
+    ${props=>props.section==="main course" && `margin-right:1.25rem`} 
 `
 const Home = () => {
     const dispatch = useDispatch();
@@ -39,7 +41,7 @@ const Home = () => {
             <div className="home__overflowfix">
                 <div className="home__dishes">
                     {!!dishes && dishes.map((dish,index)=>{
-                        return <Dishes key={index} dish={dish}/>
+                        return <Dishes key={index} dish={dish} />
                     })}
                 </div>
             </div>

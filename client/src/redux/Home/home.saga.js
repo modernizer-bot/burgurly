@@ -3,7 +3,6 @@ import {fetchDish} from './home.actions'
 import axios from 'axios'
 
 function* FetchDish(action){
-    yield console.log(action.payload);
     const response=yield axios.get('https://api.spoonacular.com/recipes/complexSearch',{
         params:{
             type:action.payload,

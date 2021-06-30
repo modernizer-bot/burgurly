@@ -23,7 +23,11 @@
     @media screen and (max-width: 1000px) {
       grid-template-columns: repeat(6, 1fr);
       grid-column-gap: 0.5rem;
-      text-align: center;
+    }
+    @media screen and (max-width: 700px) {
+      grid-template-columns: repeat(6, minmax(max-content, 1fr));
+      font-size: 1.25rem;
+      grid-column-gap: 2rem;
     }
     &-item {
       position: relative;
