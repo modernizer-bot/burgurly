@@ -7,10 +7,14 @@ import {useDispatch} from 'react-redux'
 import { useEffect } from 'react';
 import { fetchUser } from './redux/auth/auth.action';
 import Home from './pages/Home/Home';
+import { setCurrentPage } from './redux/currentpage/currentPage.action';
+import { setdishsection } from './redux/Home/home.actions';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchUser());
+    dispatch(setCurrentPage("Home"));
+    dispatch(setdishsection("main course"));
     return () => {
       
     }

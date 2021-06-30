@@ -10,12 +10,12 @@ import {ReactComponent as Setting} from '../../assets/Setting.svg'
 import {ReactComponent as Log} from '../../assets/log.svg'
 import SidebarItem from '../../components/SidebarItem/SidebarItem'
 const Sidebar = () => {
-    const arraylist=[{item:<Home/>, name:"home"},
-                    {item:<Discount/>,name:"discount"},
-                    {item:<Dashboard/>,name:"dashboard"},
-                    {item:<Message/>,name:"message"},
-                    {item:<Notification/>,name:"notification"},
-                    {item:<Setting/>,name:"setting"},
+    const arraylist=[{item:<Home/>, name:"Home"},
+                    {item:<Discount/>,name:"Discounts"},
+                    {item:<Dashboard/>,name:"Dashboard"},
+                    {item:<Message/>,name:"Messages"},
+                    {item:<Notification/>,name:"Notifications"},
+                    {item:<Setting/>,name:"Settings"},
                     {item:<Log/>,name:"logout"},
                 ];
     return (

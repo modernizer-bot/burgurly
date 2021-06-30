@@ -2,6 +2,8 @@ import React from 'react'
 import './Home.scss'
 import styled,{css} from 'styled-components'
 import Dishes from '../../components/Dishes/Dishes'
+import {useDispatch, useSelector} from 'react-redux';
+import { setdishsection } from '../../redux/Home/home.actions'
 const PseudoClass=css`
     color:#ea7c69;
     &::after{
@@ -16,32 +18,29 @@ const PseudoClass=css`
     `
 const StyledItem=styled.div`
     position: relative;
-    ${props=>props.click && PseudoClass} 
+    cursor:pointer;
+    ${props=>props.section===props.name && PseudoClass} 
 `
 const Home = () => {
+    const dispatch = useDispatch();
+    const currentSection=useSelector((state)=>state.dish.dishsection);
+    const dishes=useSelector((state)=>state.dish.dish);
     return (
         <div className="home">
             <div className="home__section">
-                <StyledItem click={true}>Hot Dishes</StyledItem>
-                <StyledItem>Cold Dishes</StyledItem>
-                <StyledItem>Soup</StyledItem>
-                <StyledItem>Grill</StyledItem>
-                <StyledItem>Appetizer</StyledItem>
-                <StyledItem>Dessert</StyledItem>
+                <StyledItem section={currentSection} name="main course" onClick={()=>dispatch(setdishsection("main course"))}>Main Course</StyledItem>
+                <StyledItem section={currentSection} name="side dish" onClick={()=>dispatch(setdishsection("side dish"))}>Side Dish</StyledItem>
+                <StyledItem section={currentSection} name="soup" onClick={()=>dispatch(setdishsection("soup"))}>Soup</StyledItem>
+                <StyledItem section={currentSection} name="drink" onClick={()=>dispatch(setdishsection("drink"))}>Drink</StyledItem>
+                <StyledItem section={currentSection} name="appetizer" onClick={()=>dispatch(setdishsection("appetizer"))}>Appetizer</StyledItem>
+                <StyledItem section={currentSection} name="dessert" onClick={()=>dispatch(setdishsection("dessert"))}>Dessert</StyledItem>
             </div>
             <div className="home__heading heading-2">Choose Dishes</div>
             <div className="home__overflowfix">
                 <div className="home__dishes">
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
-                    <Dishes/>
+                    {!!dishes && dishes.map((dish,index)=>{
+                        return <Dishes key={index} dish={dish}/>
+                    })}
                 </div>
             </div>
         </div>

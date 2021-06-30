@@ -46,8 +46,11 @@
   }
   &__overflowfix {
     overflow-y: auto;
-    height: 50rem;
+    height: calc(100vh - 18rem);
     grid-column: home-start / home-end;
+    @media screen and (max-width: 700px) {
+      height: calc(100vh - 24rem);
+    }
     &::-webkit-scrollbar {
       width: 0.5rem;
     }
@@ -72,6 +75,9 @@
     }
     @media screen and (max-width: 700px) {
       grid-template-columns: repeat(auto-fit, minmax(16.75rem, 1fr));
+    }
+    @media screen and (max-width: 500px) {
+      grid-template-columns: repeat(auto-fit, minmax(14.75rem, 1fr));
     }
   }
   @media screen and (max-width: 800px) {

@@ -1,13 +1,14 @@
 import React from 'react'
 import './Dishes.scss'
-const Dishes = () => {
+import random from 'random'
+const Dishes = ({dish}) => {
     return (
         <div className="dishes">
-            <div className="dishes__image"><img src="/burger.jpg" alt="burger" /></div>
+            <div className="dishes__image"><img src={dish.image} alt={dish.title} /></div>
             <div className="dishes__description">
-                <div className="dishes__description-heading">Spicy seasoned seafood noodles</div>
-                <div className="dishes__description-price"><span className="u-margin-right-sm">$</span>2.29</div>
-                <div className="dishes__description-available">20 bowls available</div>
+                <div className="dishes__description-heading dishes-text">{dish.title}</div>
+                <div className="dishes__description-price dishes-text"><span className="u-margin-right-sm">$</span>{random.float(0, 25).toString().substring(0,4)}</div>
+                <div className="dishes__description-available dishes-text">{dish.id.toString().substring(1,3)} bowls available</div>
             </div>
         </div>
     )
