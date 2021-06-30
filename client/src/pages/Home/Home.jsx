@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.scss'
 import styled,{css} from 'styled-components'
+import Dishes from '../../components/Dishes/Dishes'
 const PseudoClass=css`
     color:#ea7c69;
     &::after{
@@ -27,6 +28,21 @@ const Home = () => {
                 <StyledItem>Grill</StyledItem>
                 <StyledItem>Appetizer</StyledItem>
                 <StyledItem>Dessert</StyledItem>
+            </div>
+            <div className="home__heading heading-2">Choose Dishes</div>
+            <div className="home__overflowfix">
+                <div className="home__dishes">
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                    <Dishes/>
+                </div>
             </div>
         </div>
     )
