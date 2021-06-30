@@ -6,6 +6,7 @@ import Order from './pages/Order/Order.jsx';
 import {useDispatch} from 'react-redux'
 import { useEffect } from 'react';
 import { fetchUser } from './redux/auth/auth.action';
+import Home from './pages/Home/Home';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,7 +33,10 @@ function App() {
   return (
     <div className="app">
       <Sidebar/>
-      <Header/>
+      <div className="app__content">
+        <Header/>
+        <Home/>
+      </div>
       <Order/>
     </div>
   );

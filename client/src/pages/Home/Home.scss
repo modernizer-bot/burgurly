@@ -1,0 +1,40 @@
+@import "../../styles/variables";
+.home {
+  grid-column: 1 / -1;
+  display: grid;
+  height: 100vh;
+  grid-template-columns:
+    [home-start] minmax(10rem, 1fr) [first-end content-start] repeat(
+      7,
+      [col-start] minmax(min-content, 10rem) [col-end]
+    )
+    [content-end]
+    minmax(10rem, 1fr) [home-end];
+  grid-auto-rows: min-content;
+  padding: 1.5rem;
+  background-color: $background-color-light;
+  color: $white;
+  &__section {
+    grid-column: home-start / home-end;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr) 0.6fr;
+    padding-bottom: 1rem;
+    border-bottom: 1.5px solid rgba($text-light, 0.3);
+    @media screen and (max-width: 1000px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    &-item {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: calc(-1rem - 2px);
+        left: 0;
+        width: 5rem;
+        height: 3px;
+        border-radius: 3px;
+        background-color: $primary-color;
+      }
+    }
+  }
+}

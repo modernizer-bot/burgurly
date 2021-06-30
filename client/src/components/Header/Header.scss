@@ -1,13 +1,13 @@
 @import "../../styles/variables";
 .header {
   display: grid;
-  grid-column: content-start / col-end 10;
+  grid-column: 1/-1;
   background-color: #252836;
   color: #fff;
   height: 9rem;
-  padding: 1.5rem;
   display: flex;
   align-items: center;
+  padding: 1.5rem;
   &__left {
     margin-right: auto;
 
@@ -41,9 +41,9 @@
   }
 
   @media screen and (max-width: 1500px) {
-    grid-column: content-start / col-end 9;
+    grid-column: 1/-1;
   }
   @media screen and (max-width: 700px) {
-    grid-column: full-start / full-end;
+    grid-column: 1/-1;
   }
 }
