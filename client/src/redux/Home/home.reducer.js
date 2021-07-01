@@ -1,6 +1,7 @@
 const initialState={
     dishsection:"main course",
-    dish:[]
+    dish:[],
+    search:[]
 }
 export const dishSectionReducer=(state=initialState,action)=>{
     switch (action.type) {
@@ -9,10 +10,15 @@ export const dishSectionReducer=(state=initialState,action)=>{
                 ...state,
                 dishsection:action.payload
             }
-        case "FETCH_DISH":
+        case "SET_DISH":
             return {
                 ...state,
                 dish:action.payload
+            }
+        case "GET_SUGGESTIONS":
+            return{
+                ...state,
+                search:action.payload
             }
         default:
             return state
