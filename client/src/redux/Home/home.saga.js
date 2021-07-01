@@ -6,7 +6,7 @@ function* SetDish(action){
     const response=yield axios.get('https://api.spoonacular.com/recipes/complexSearch',{
         params:{
             type:action.payload,
-            number:10,
+            number:25,
             apiKey:"5c2f750887994ff6949f5473bc20890e"
         }
     }) 

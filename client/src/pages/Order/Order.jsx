@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux'
 const Order = () => {
     const [clicked,setclicked]=useState(false);
     const cartitems=useSelector((state)=>state.order.cart);
-    console.log(cartitems);
     const total=cartitems.reduce((accumulator,item)=>{
         return accumulator + (item.price * item.quantity)
     },0);
