@@ -9,6 +9,7 @@ import { fetchUser } from './redux/auth/auth.action';
 import Home from './pages/Home/Home';
 import { setCurrentPage } from './redux/currentpage/currentPage.action';
 import { setdishsection } from './redux/Home/home.actions';
+import Dashboard from './pages/Dashboard/Dashboard';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,12 +28,18 @@ function App() {
       <div className="app__content">
         {currentPage==="Home" && 
           <>
-          <Header/>
+          <Header page="Home"/>
           <Home/>
           </>
         }
+        {currentPage==="Dashboard" && 
+          <>
+          <Header page="Dashboard"/>
+          <Dashboard/>
+          </>
+        }
       </div>
-      <Order/>
+      {currentPage==="Home" && <Order/>}
     </div>
   );
 }

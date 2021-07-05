@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { SearchFood } from '../../redux/Home/home.actions'
 import SearchItem from '../SearchItem/SearchItem'
 import styled,{css} from 'styled-components';
-const Header = () => {
+const Header = ({page}) => {
     const [inputdata,setinputdata]=useState('');
     const time= moment().format('dddd, DD MMMM YYYY');  
     const dispatch = useDispatch();
@@ -73,9 +73,10 @@ const Header = () => {
         <div className='header'>
             <StyledFlash authChanged={authChanged.bool} className="header__flash">{authChanged.authstate}</StyledFlash>
             <div className="header__left">
-                <div className="header__left-title heading-1">Jaegar Resto</div>
+                <div className="header__left-title heading-1">{page==="Home" ? "Jaegar Resto" : page}</div>
                 <div className="header__left-time">{time}</div>
             </div>
+            {page==="Home" && 
             <div className={`${inputdata && "header__inputContainer-flat"} header__inputContainer`}>
                 <Search/>
                 <input onChange={(e)=>setinputdata(e.target.value)} value={inputdata} placeholder='Search for food, coffee, etc'/>
@@ -85,6 +86,7 @@ const Header = () => {
                     })}
                 </div>}
             </div>
+}
         </div>
     )
 }

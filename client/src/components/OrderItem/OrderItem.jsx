@@ -23,7 +23,7 @@ const OrderItem = ({item}) => {
                 </div>
                 <div className="orderitem__detail-secondary">
                     <div className="orderitem__detail-secondary-inputContainer"><input placeholder='Order Note...'/></div>
-                    <div className="orderitem__detail-secondary-delete" onClick={()=>dispatch(deleteCartItem(item))}><Button type="ghost"><Delete/></Button></div>
+                    <div className="orderitem__detail-secondary-delete" onClick={()=>dispatch(deleteCartItem(item))}><Button type="ghost" color="#ff7ca3"><Delete/></Button></div>
                 </div>
             </div>
         </div>

@@ -6,8 +6,9 @@ function* SetDish(action){
     const response=yield axios.get('https://api.spoonacular.com/recipes/complexSearch',{
         params:{
             type:action.payload,
-            number:25,
-            apiKey:"5c2f750887994ff6949f5473bc20890e"
+            number:10,
+            apiKey:"27fe581e9b774f2e98611228bf664457"
+            // apiKey:"5c2f750887994ff6949f5473bc20890e"
         }
     }) 
     yield put(setDish(response.data.results));
@@ -23,7 +24,8 @@ function* QueryDish(action){
         params:{
             query:action.payload,
             number:5,
-            apiKey:"5c2f750887994ff6949f5473bc20890e"
+            apiKey:"27fe581e9b774f2e98611228bf664457"
+            // apiKey:"5c2f750887994ff6949f5473bc20890e"
         }
     });
     yield put(SetSuggestions(response.data)) 
@@ -40,7 +42,8 @@ function* FetchDish(action){
         params:{
             query:action.payload,
             number:10,
-            apiKey:"5c2f750887994ff6949f5473bc20890e"
+            apiKey:"27fe581e9b774f2e98611228bf664457"
+            // apiKey:"5c2f750887994ff6949f5473bc20890e"
         }
     }) 
     yield put(setDish(response.data.results));
