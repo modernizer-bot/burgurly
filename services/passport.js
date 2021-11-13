@@ -1,5 +1,6 @@
 const passport=require('passport');
 const GoogleStrategy=require('passport-google-oauth20').Strategy;
+// const LocalStrategy = require('passport-local').Strategy;
 const keys=require('../config/keys');
 const mongoose=require('mongoose');
 const User=mongoose.model('users');
@@ -14,17 +15,43 @@ passport.deserializeUser((id,done)=>{
     })
     .catch((err)=>console.log(err))
 })
-passport.use(new GoogleStrategy({
+
+passport.use('Partner',new GoogleStrategy({
     clientID:keys.googleClientID,
     clientSecret:keys.googleClientSecret,
-    callbackURL:'/auth/google/callback'
+    callbackURL:'/auth/partner/google/callback'
 },async(accesstoken,refresh_token, profile,done)=>{
+    console.log('called partner');
     const results=await User.findOne({googleId:profile.id});
     console.log(results);
     if(results) done(null,results);
     else{
         const user=await new User({
             googleId:profile.id,
+            type:'Partner',
+            Restaurant:'',
+            location:'',
+            displayName:profile.displayName,
+            email:profile.emails,
+            photo:profile.photos
+        }).save();
+        done(null,user);
+    }
+}))
+
+passport.use('Customer',new GoogleStrategy({
+    clientID:keys.googleClientID,
+    clientSecret:keys.googleClientSecret,
+    callbackURL:'/auth/customer/google/callback'
+},async(accesstoken,refresh_token, profile,done)=>{
+    console.log('called customer');
+    const results=await User.findOne({googleId:profile.id});
+    console.log(results);
+    if(results) done(null,results);
+    else{
+        const user=await new User({
+            googleId:profile.id,
+            type:'Customer',
             displayName:profile.displayName,
             email:profile.emails,
             photo:profile.photos

@@ -13,6 +13,8 @@ import SidebarItem from '../../components/SidebarItem/SidebarItem'
 import { useSelector } from 'react-redux'
 const Sidebar = () => {
     const user=useSelector((state)=>state.auth.user);
+    console.log(user);
+    
     const arraylist=[{item:<Home/>, name:"Home"},
                     {item:<Discount/>,name:"Discounts"},
                     {item:<Dashboard/>,name:"Dashboard"},
@@ -21,6 +23,7 @@ const Sidebar = () => {
                     {item:<Setting/>,name:"Settings"},
                     {item:user ?<Logout/>:<Login/>,name:"auth"},
                 ];
+    
     return (
         <div className='sidebar'>
             <div className="sidebar__brand"><Logo/></div>
