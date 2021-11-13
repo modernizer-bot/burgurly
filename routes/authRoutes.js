@@ -20,13 +20,4 @@ module.exports=(app)=>{
         req.logout();
         res.redirect('/');
     })
-
-    app.post('/api/partner/detail',(req,res)=>{
-        const {RestaurantName,RestaurantAddress,location}=req.body;
-        req.user.RestaurantName=RestaurantName;
-        req.user.RestaurantAddress=RestaurantAddress;
-        req.user.location=location
-        req.user.save();
-        res.send(req.user);
-    })
 }

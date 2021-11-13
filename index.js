@@ -1,7 +1,7 @@
 const express=require('express');
 const app=express();
-app.use(express.urlencoded({ extended: true}))
-app.use(express.json())
+app.use(express.urlencoded({limit: "30mb",extended:true}))
+app.use(express.json({limit: "30mb",extended:true}))
 const cookieSession=require('cookie-session');
 const passport=require('passport');
 const keys = require('./config/keys');
@@ -19,6 +19,7 @@ mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useUnifiedTopology: true
 // User.find({}).then((result)=>console.log(result))
 // .catch((err)=>console.log(err))
 require('./routes/authRoutes')(app);
+require('./routes/partnerRoutes')(app);
 
 if(process.env.NODE_ENV==='production'){
     app.use(express.static('client/build'))

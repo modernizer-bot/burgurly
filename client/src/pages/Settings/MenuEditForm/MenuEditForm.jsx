@@ -1,18 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
 import MenuCard from '../MenuCard/MenuCard';
-import './MenuAddForm.scss'
+import './MenuEditForm.scss'
 import Button from '../../../components/Button/Button';
 import axios from 'axios';
-import { fetchUser } from '../../../redux/auth/auth.action';
-import { useDispatch } from 'react-redux';
-const MenuAddForm = ({handleClose,currentSection}) => {
-  const dispatch = useDispatch();
-
-  const [name,setname] = useState("");
-  const [price,setprice] = useState();
-  const [stock,setstock] = useState();
-  const [image,setImage]=useState();
+// import { fetchUser } from '../../../redux/auth/auth.action';
+// import { useDispatch } from 'react-redux';
+const MenuEditForm = ({handleClose,currentSection,src,title,price,stock}) => {
+  // const dispatch = useDispatch();
+  const [name,setname] = useState(title);
+  const [Price,setPrice] = useState(price);
+  const [bowl,setBowl] = useState(stock);
+  const [image,setImage]=useState(src);
   const getBase64 = file => {
     return new Promise(resolve => {
       let fileInfo;
@@ -48,8 +47,8 @@ const MenuAddForm = ({handleClose,currentSection}) => {
 
   const ClearForm=()=>{
     setname('');
-    setprice(0);
-    setstock(0);
+    setPrice(0);
+    setBowl(0);
     setImage(null);
   }
   const submit=()=>{
@@ -66,11 +65,11 @@ const MenuAddForm = ({handleClose,currentSection}) => {
   }
   return (
     <>
-      <div className="menuAddForm">
-        <div className="menuAddForm__inputdetails--inputContainer"><input type='text' placeholder='Enter Name of the dish' value={name} onChange={(e)=>setname(e.target.value)}/></div>
-        <div className="menuAddForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Price' value={price} onChange={(e)=>setprice(e.target.value)}/></div>
-        <div className="menuAddForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Stock' value={stock} onChange={(e)=>setstock(e.target.value)}/></div>
-        <div className="menuAddForm__inputdetails-upload">
+      <div className="menuEditForm">
+        <div className="menuEditForm__inputdetails--inputContainer"><input type='text' placeholder='Enter Name of the dish' value={name} onChange={(e)=>setname(e.target.value)}/></div>
+        <div className="menuEditForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Price' value={price} onChange={(e)=>setPrice(e.target.value)}/></div>
+        <div className="menuEditForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Stock' value={stock} onChange={(e)=>setBowl(e.target.value)}/></div>
+        <div className="menuEditForm__inputdetails-upload">
         <label>
               <input
                 type="file"
@@ -80,10 +79,10 @@ const MenuAddForm = ({handleClose,currentSection}) => {
               Upload Image
             </label>
         </div>
-        <div className="menuAddForm__inputdetails-upload--text">Dish Preview</div>
+        <div className="menuEditForm__inputdetails-upload--text">Dish Preview</div>
 
-        <MenuCard formCalled={true} src={image} title={name} price={price} stock={stock}/>
-        <div className="menuAddForm__buttons">
+        <MenuCard formCalled={true} src={image} title={name} price={Price} stock={bowl}/>
+        <div className="menuEditForm__buttons">
           <div onClick={ClearForm}><Button type="ghost" config="discard" color='#ea7c69'>Discard Changes</Button></div>
           <div onClick={submit}><Button type="primary" config="save">Save</Button></div>
         </div>
@@ -92,4 +91,4 @@ const MenuAddForm = ({handleClose,currentSection}) => {
   )
 }
 
-export default MenuAddForm
+export default MenuEditForm

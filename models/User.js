@@ -1,19 +1,26 @@
 const mongoose=require('mongoose');
+const dishes=require('./Dish');
 const userSchema=new mongoose.Schema({
     googleId:String,
     type:String,
     displayName:String,
     RestaurantName:String,
     RestaurantAddress:String,
+    sideDish:[dishes],
+    MainCourse:[dishes],
+    drink:[dishes],
+    soup:[dishes],
+    appetizer:[dishes],
+    dessert:[dishes],
     location:{
         type: {
-            type: String, // Don't do `{ location: { type: String } }`
-            enum: ['Point'], // 'location.type' must be 'Point'
-            required: true
+            type: String, 
+            enum: ['Point'],
+            required: false
           },
           coordinates: {
             type: [Number],
-            required: true
+            required: false
           }
     },
     email:Array,

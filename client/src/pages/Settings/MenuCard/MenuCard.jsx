@@ -1,18 +1,28 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './MenuCard.scss'
 import {ReactComponent as Edit} from '../../../assets/Edit.svg'
+import MenuEditForm from '../MenuEditForm/MenuEditForm'
+import { Dialog } from '@material-ui/core'
 const MenuCard = (props) => {
-    console.log(props);
+    const [open,setopen]=useState(false);
+    const handledialogactions=()=>{
+        setopen(false);
+    }
     return (
+        <>
         <div className={`${props.formCalled && 'menuCard--dark'} menuCard`}>
-            <div className="menuCard__image"><img src={`data:image/jpeg;base64,${props.src}`} alt={props.title} /></div>
+            <div className="menuCard__image"><img src={props.src} alt={props.title} /></div>
             <div className="menuCard__description">
                 <div className="menuCard__description-heading menuCard-text">{props.title}</div>
                 <div className="menuCard__description-price menuCard-text"><span className="u-margin-right-sm">$</span>{props.price}</div>
-                <div className="menuCard__description-available menuCard-text">{props.price} bowls available</div>
+                <div className="menuCard__description-available menuCard-text">{props.stock} available in stock</div>
             </div>
-            {!props.formCalled && <div className="menuCard__Edit"><Edit/>&nbsp;&nbsp;Edit Dish</div>}
+            {!props.formCalled && <div className="menuCard__Edit" onClick={()=>setopen(true)}><Edit/>&nbsp;&nbsp;Edit Dish</div>}
         </div>
+        {open && <Dialog open={open} onClose={()=>setopen(false)} >
+        <MenuEditForm handleClose={handledialogactions} currentSection={props.currentSection} title={props.title} stock={props.stock} src={props.src} price={props.price}/>
+        </Dialog>}
+        </>
     )
 }
 

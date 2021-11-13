@@ -1,16 +1,16 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import './Settings.scss';
 import {ReactComponent as Business} from '../../assets/business.svg'
 import {ReactComponent as Option} from '../../assets/Option.svg'
 import {ReactComponent as Add} from '../../assets/Add.svg'
 import Button from '../../components/Button/Button';
 import styled,{css} from 'styled-components'
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPage } from '../../redux/currentpage/currentPage.action';
 import MenuCard from './MenuCard/MenuCard';
 import { Dialog } from "@material-ui/core";
 import MenuAddForm from './MenuAddForm/MenuAddForm';
+import { fetchUser } from '../../redux/auth/auth.action';
 const Settings = () => {
   const [name,setName]=useState('');
   const [address,setAddress]=useState('');
@@ -18,11 +18,17 @@ const Settings = () => {
   const [longitude,setLongitude]=useState('');
   const [side,setSide]=useState('info');
   const [open,setopen]=useState(false);
-
+  const user=useSelector((state)=>state.auth?.user);
   const dispatch = useDispatch();
 
-  const [currentSection,setCurrentSection]=useState('main course');
+  const [currentSection,setCurrentSection]=useState('MainCourse');
 
+  useEffect(() => {
+    dispatch(fetchUser());
+    return () => {
+      
+    }
+  }, [dispatch,open])
 
   const StyledItem=styled.div`
     position: relative;
@@ -133,8 +139,8 @@ const PseudoClass=css`
             side==='upload' && <>
               <div className="settings__form-heading">Restaurant Menu</div>
                <div className="settings__form-upload">
-                <StyledItem section={currentSection} name="main course" onClick={()=>setCurrentSection("main course")}>Main Course</StyledItem>
-                <StyledItem section={currentSection} name="side dish" onClick={()=>setCurrentSection("side dish")}>Side Dish</StyledItem>
+                <StyledItem section={currentSection} name="MainCourse" onClick={()=>setCurrentSection("MainCourse")}>Main Course</StyledItem>
+                <StyledItem section={currentSection} name="sideDish" onClick={()=>setCurrentSection("sideDish")}>Side Dish</StyledItem>
                 <StyledItem section={currentSection} name="soup" onClick={()=>setCurrentSection("soup")}>Soup</StyledItem>
                 <StyledItem section={currentSection} name="drink" onClick={()=>setCurrentSection("drink")}>Drink</StyledItem>
                 <StyledItem section={currentSection} name="appetizer" onClick={()=>(setCurrentSection("appetizer"))}>Appetizer</StyledItem>
@@ -145,7 +151,11 @@ const PseudoClass=css`
                   <Add/>
                   <div className="menuContainer__addCard-text">Add new dish</div>
                 </div>
-                <MenuCard/>
+                {user[currentSection]?.map((dish)=>{
+                  const {name,image,price,stock}=dish;
+                  return <MenuCard title={name} src={image} price={price} stock={stock} currentSection={currentSection}/>
+                })}
+                
               </div>
               <div className="settings__buttons">
                 <div onClick={UploadSubmit}><Button type="primary" config="save">Save Changes</Button></div>
@@ -155,7 +165,7 @@ const PseudoClass=css`
         </div>
       </div>
       {open && <Dialog open={open} onClose={()=>setopen(false)} >
-      <MenuAddForm handleClose={handledialogactions}/>
+      <MenuAddForm handleClose={handledialogactions} currentSection={currentSection}/>
     </Dialog>}
     </>
   )
