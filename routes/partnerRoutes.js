@@ -57,6 +57,17 @@ module.exports=(app)=>{
     .catch((err)=>console.log(err));
   })
 
+    app.post('/api/partner/menu/delete',(req,res)=>{
+      const {id}=req.body;
+      console.log(id);
+    Menu.updateOne( {name: 'MainCourse'}, { $pull: {dishes: {_id:id}} } )
+    .then((response)=>{
+      console.log(response);
+    })
+    .catch((err)=>console.log(err))
+  })
+
+
     app.post('/api/partner/menu/create',async(req,res)=>{
       const {currentSection,name,price,stock,image}=req.body;
       Menu.find({_user:req.user.id,name:currentSection}).then((result)=>{
@@ -91,8 +102,8 @@ module.exports=(app)=>{
             dishes:{
               name,price,stock,image
             }
-          }).then((res)=>{
-            res.send(res);
+          }).then((response)=>{
+            res.send(response);
           })
           .catch((err)=>console.log(err))
 

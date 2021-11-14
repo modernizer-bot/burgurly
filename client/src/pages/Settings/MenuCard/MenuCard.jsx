@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import './MenuCard.scss'
-import {ReactComponent as Edit} from '../../../assets/Edit.svg'
+import {ReactComponent as Edit} from '../../../assets/Edit.svg';
+import {ReactComponent as Trash} from '../../../assets/Trash.svg';
 import MenuEditForm from '../MenuEditForm/MenuEditForm'
 import { Dialog } from '@material-ui/core'
 const MenuCard = (props) => {
@@ -11,6 +12,7 @@ const MenuCard = (props) => {
     return (
         <>
         <div className={`${props.formCalled && 'menuCard--dark'} menuCard`}>
+            <div className="menuCard__trash" onClick={()=>props.ondelete(props.id)}><Trash/></div>
             <div className="menuCard__image"><img src={props.src} alt={props.title} /></div>
             <div className="menuCard__description">
                 <div className="menuCard__description-heading menuCard-text">{props.title}</div>

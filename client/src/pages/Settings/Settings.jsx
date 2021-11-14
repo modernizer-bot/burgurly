@@ -12,6 +12,7 @@ import { Dialog } from "@material-ui/core";
 import MenuAddForm from './MenuAddForm/MenuAddForm';
 import { fetchUser } from '../../redux/auth/auth.action';
 import { fetchDishes } from '../../redux/dishes/dishes.action';
+import axios from 'axios';
 
 const Settings = () => {
   const [name,setName]=useState('');
@@ -98,6 +99,13 @@ const PseudoClass=css`
   const handledialogactions=()=>{
     setopen(false);
 }
+  const ondelete=(id)=>{
+    console.log(id);
+    axios.post('/api/partner/menu/delete',{
+      id:id
+    })
+
+  }
 
   return (
     <>
@@ -157,10 +165,10 @@ const PseudoClass=css`
                   <Add/>
                   <div className="menuContainer__addCard-text">Add new dish</div>
                 </div>
-                {category.map((dishes)=>{
-                  return dishes?.dishes.map((dish)=>{
-                    const {name,image,price,stock}=dish;
-                  return <MenuCard title={name} src={image} price={price} stock={stock} currentSection={currentSection}/>
+                {category?.map((dishes)=>{
+                  return dishes?.dishes?.map((dish)=>{
+                    const {name,image,price,stock,_id}=dish;
+                  return <MenuCard title={name} id={_id} src={image} price={price} stock={stock} currentSection={currentSection} ondelete={ondelete}/>
                   })
                 })}
                 
