@@ -1,5 +1,5 @@
 import { takeEvery,put,select} from "redux-saga/effects";
-import { getMenu } from "../restaurant/restaurant.actions";
+import { getMenu } from "../restaurant/restaurant.actions.js";
 
 export const current = (state) => state.restaurants.current?.id;
 

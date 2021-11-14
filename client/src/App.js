@@ -4,9 +4,9 @@ import Sidebar from './pages/Sidebar/Sidebar';
 import Order from './pages/Order/Order.jsx';
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react';
-import { fetchUser } from './redux/auth/auth.action';
-import { setCurrentPage } from './redux/currentpage/currentPage.action';
-import { setdishsection } from './redux/Home/home.actions';
+import { fetchUser } from './redux/auth/auth.action.js';
+import { setCurrentPage } from './redux/currentpage/currentPage.action.js';
+import { setdishsection } from './redux/Home/home.actions.js';
 import Dashboard from './pages/Dashboard/Dashboard';
 import CustomerLogin from './pages/Login/Customer/CustomerLogin';
 import RestaurantLogin from './pages/Login/Restaurant/RestaurantLogin.jsx';
