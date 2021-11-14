@@ -4,7 +4,7 @@ const RestaurantCard = ({address,name,location,fetchMenu,id}) => {
   return (
     <>
       <div className="restaurantCard" onClick={()=>{
-        fetchMenu(id);
+        fetchMenu({id,address,name,location});
       }}>
         <div className="restaurantCard__img">
           <img src="https://www.ticklingpalates.com/wp-content/uploads/2021/08/Instant-Pot-Pav-Bhaji-Recipe.jpg" alt="pav bhaji" />

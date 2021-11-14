@@ -20,15 +20,23 @@ module.exports=(app)=>{
     })
 
       app.post('/api/partner/restaurants/menu',(req,res)=>{
-        const {restaurantId,menuName}=req.body;
-        Restaurant.find({_id:restaurantId}).then((response)=>{
-          Menu.find({})
+        const {id,menuName}=req.body;
+        console.log(req.body);
+        Restaurant.find({_id:id,"_menu.name":menuName}).then((resExists)=>{
+          console.log(resExists);
+          resExists[0]?._menu.forEach(element => {
+            if(element.name===menuName){
+              Menu.find({_id:element._id}).then((dishes)=>{
+                res.send(dishes);
+              })
+            }
+          });
+          
         })
       })
 
     app.get('/api/partner/restaurants',(req,res)=>{
       Restaurant.find({}).then((response)=>{
-        console.log(response);
         res.send(response);
       })
       .catch((err)=>{

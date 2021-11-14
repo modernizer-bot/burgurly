@@ -1,5 +1,5 @@
 const initialState={
-    dishsection:"MainCourse",
+    dishsection:null,
     dish:[],
     search:[]
 }

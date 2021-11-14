@@ -6,11 +6,18 @@ export const getRestaurants=()=>{
     }
 }
 
+export const CurrentRestaurant=(query)=>{
+    return{
+        type:"CURRENT_RESTAURANT",
+        payload:query
+    }
+}
+
 export const getMenu=(prop)=>{
-    const {restaurantId, menuName}=prop;
+    const {id, menuName}=prop;
     return async (dispatch)=>{
         const {data}=await axios.post('/api/partner/restaurants/menu',{
-            restaurantId,menuName
+            id,menuName
         });
         dispatch({type:'GET_MENU',payload:data})
     }

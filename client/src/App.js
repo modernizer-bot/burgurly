@@ -17,14 +17,17 @@ import HomeCustomer from './pages/Home/HomeCustomer/HomeCustomer';
 function App() {
   const dispatch = useDispatch();
   const user=useSelector((state)=>state.auth?.user);
+  const type=user?.type;
   useEffect(() => {
     dispatch(fetchUser());
-    dispatch(setCurrentPage("Home"));   
-    dispatch(setdishsection("main course"));
+    dispatch(setCurrentPage("Home"));  
+    if(type==="Partner"){
+      dispatch(setdishsection("MainCourse"));
+    }
     return () => {
       
     }
-  }, [dispatch])
+  }, [dispatch,type])
 
   const TypeCustomer=()=>{
     return(
