@@ -21,7 +21,6 @@ const Settings = () => {
   const [longitude,setLongitude]=useState('');
   const [side,setSide]=useState('info');
   const [open,setopen]=useState(false);
-  const user=useSelector((state)=>state.auth?.user);
   const category=useSelector((state)=>state.category?.dishes);
   const dispatch = useDispatch();
 
@@ -74,20 +73,20 @@ const PseudoClass=css`
     });
   }
   const Submit=()=>{
-    // if(name!=='' && address!=='' && latitude!=='' && longitude!=='')
-    // axios.post('/api/partner/detail',{
-    //     RestaurantName:name,
-    //   RestaurantAddress:address,
-    //   location:{
-    //     type:'Point',
-    //     coordinates:[+latitude,+longitude]
-    //   }
-    // })
-    // .then((res)=>{
-    //   console.log(res);
-    //   setSide('upload')
-    // })
-    // .catch(e=>console.log(e))
+    if(name!=='' && address!=='' && latitude!=='' && longitude!=='')
+    axios.post('/api/partner/detail',{
+        RestaurantName:name,
+      RestaurantAddress:address,
+      location:{
+        type:'Point',
+        coordinates:[+latitude,+longitude]
+      }
+    })
+    .then((res)=>{
+      console.log(res);
+      setSide('upload')
+    })
+    .catch(e=>console.log(e))
     setSide('upload');
   }
 

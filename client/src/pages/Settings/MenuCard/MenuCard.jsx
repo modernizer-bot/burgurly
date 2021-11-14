@@ -12,7 +12,7 @@ const MenuCard = (props) => {
     return (
         <>
         <div className={`${props.formCalled && 'menuCard--dark'} menuCard`}>
-            <div className="menuCard__trash" onClick={()=>props.ondelete(props.id)}><Trash/></div>
+            {!props.nodelete && <div className="menuCard__trash" onClick={()=>props.ondelete(props.id)}><Trash/></div>}
             <div className="menuCard__image"><img src={props.src} alt={props.title} /></div>
             <div className="menuCard__description">
                 <div className="menuCard__description-heading menuCard-text">{props.title}</div>

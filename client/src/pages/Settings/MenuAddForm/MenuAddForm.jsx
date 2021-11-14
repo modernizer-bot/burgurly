@@ -4,10 +4,10 @@ import MenuCard from '../MenuCard/MenuCard';
 import './MenuAddForm.scss'
 import Button from '../../../components/Button/Button';
 import axios from 'axios';
-import { fetchUser } from '../../../redux/auth/auth.action';
-import { useDispatch } from 'react-redux';
+// import { fetchUser } from '../../../redux/auth/auth.action';
+// import { useDispatch } from 'react-redux';
 const MenuAddForm = ({handleClose,currentSection}) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [name,setname] = useState("");
   const [price,setprice] = useState();
@@ -54,6 +54,7 @@ const MenuAddForm = ({handleClose,currentSection}) => {
   }
   const submit=()=>{
     console.log("currentSection: ",currentSection );
+    console.log("submit called");
     axios.post('/api/partner/menu/create',{
       currentSection:currentSection,
       name:name,
