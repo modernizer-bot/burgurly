@@ -1,6 +1,7 @@
 const passport = require("passport");
 const mongoose=require('mongoose');
 const User=mongoose.model('users');
+const Menu=mongoose.model('menus');
 
 module.exports=(app)=>{
     //partner
@@ -13,16 +14,191 @@ module.exports=(app)=>{
         res.send(req.user);
     })
 
-    app.post('/api/partner/menu',(req,res)=>{
-      const {currentSection,name,price,stock,image}=req.body;
-        req.user[currentSection].push({
-          name,
-          price,
-          stock,
-          image
-        })
-        req.user.save();
+    app.get('/api/partner/menu/mainCourse',(req,res)=>{
+      Menu.find({_user:req.user.id, name:'MainCourse'})
+      .then((result)=>{
+          return res.send(result);
     })
+    .catch((err)=>console.log(err));
+  })
+    app.get('/api/partner/menu/sideDish',(req,res)=>{
+      Menu.find({_user:req.user.id, name:'sideDish'})
+      .then((result)=>{
+          return res.send(result);
+    })
+    .catch((err)=>console.log(err));
+  })
+    app.get('/api/partner/menu/soup',(req,res)=>{
+      Menu.find({_user:req.user.id, name:'soup'})
+      .then((result)=>{
+          return res.send(result);
+    })
+    .catch((err)=>console.log(err));
+  })
+    app.get('/api/partner/menu/drink',(req,res)=>{
+      Menu.find({_user:req.user.id, name:'drink'})
+      .then((result)=>{
+          return res.send(result);
+    })
+    .catch((err)=>console.log(err));
+  })
+    app.get('/api/partner/menu/appetizer',(req,res)=>{
+      Menu.find({_user:req.user.id, name:'appetizer'})
+      .then((result)=>{
+          return res.send(result);
+    })
+    .catch((err)=>console.log(err));
+  })
+    app.get('/api/partner/menu/dessert',(req,res)=>{
+      Menu.find({_user:req.user.id, name:'dessert'})
+      .then((result)=>{
+          return res.send(result);
+    })
+    .catch((err)=>console.log(err));
+  })
+
+    app.post('/api/partner/menu/create',async(req,res)=>{
+      const {currentSection,name,price,stock,image}=req.body;
+      Menu.find({_user:req.user.id,name:currentSection}).then((result)=>{
+        if(result.length>0){
+              Menu.find({_user:req.user.id, name:currentSection, dishes: { $elemMatch: {name: name} }})
+          .then((result)=>{
+
+            if(result.length>0){
+              return res.send({message:"dishes already exists"});
+            }
+            else{
+              Menu.findOneAndUpdate({_user: req.user.id, name:currentSection}, 
+                {$push: {
+                  dishes:dish
+                }}, 
+                {new: true, useFindAndModify: false}, (err, result) => {
+                // Rest of the action goes here
+                res.send(result);
+                console.log(err);
+              })
+            }
+      
+          })
+          .catch((err)=>{
+            return res.status(401).json({message:err})
+          });
+            }
+        else{
+          Menu.create({
+            _user:req.user.id,
+            name:currentSection,
+            dishes:{
+              name,price,stock,image
+            }
+          }).then((res)=>{
+            res.send(res);
+          })
+          .catch((err)=>console.log(err))
+
+        }
+
+      })
+        
+      
+
+
+
+      // Menu.find({_user:req.user.id, name:currentSection, dishes: { $elemMatch: {name: name} }})
+      // .then((result)=>{
+
+      //   if(result.length>0){
+      //     return res.send({message:"dishes already exists"});
+      //   }
+      //   else{
+      //     Menu.findOneAndUpdate({_user: req.user.id, name:currentSection}, 
+      //       {$push: {
+      //         dishes:dish
+      //       }}, 
+      //       {new: true, useFindAndModify: false}, (err, result) => {
+      //       // Rest of the action goes here
+      //       res.send(result);
+      //       console.log(err);
+      //      })
+      //   }
+  
+      // })
+      // .catch((err)=>{
+      //   return res.status(401).json({message:err})
+      // });
+      const dish={
+        name,price,stock,image
+      }
+      // Menu.findOneAndUpdate({_user: req.user.id}, 
+      //               {$push: {
+      //                 dishes:dish
+      //               }}, 
+      //               {new: true, useFindAndModify: false}, (err, result) => {
+      //               // Rest of the action goes here
+      //               res.send(result);
+      //               console.log(err);
+      //              })
+    ///////////////////////////
+    //   const menu=await Menu.updateOne({dishes: {$elemMatch: {name: name}}},
+    //   {'$set': {
+    //     'dishes.$.name': name,
+    //     'dishes.$.price': price,
+    //     'dishes.$.stock': stock,
+    //     'dishes.$.image': image,
+    //   }}
+    // ,(err,res)=>{
+    //     console.log(res);
+    //     console.log(err);
+    //   }) 
+    //   res.send(menu)       
+    //////////////////////////////////////
+      // const menu=await Menu.updateOne({_user:req.user.id,name:currentSection},{
+      //    name:currentSection,
+      //    dishes:{
+      //      name,price,stock,image
+      //    },
+      //   _user:req.user.id,
+      // },{upsert: true},(err,res)=>{
+      //   console.log(res);
+      //   console.log(err);
+      // }) 
+      // res.send(menu)       
+        // req.user[currentSection].push({
+        //   name,
+        //   price,
+        //   stock,
+        //   image
+        // })
+        // req.user.save();
+    })
+
+    app.post('/api/partner/menu/edit',async(req,res)=>{
+      const {currentSection,name,price,stock,image}=req.body;
+      console.log(req.body);
+      const menu=await Menu.updateOne({_user:req.user.id, dishes: { $elemMatch: {name: name} }},
+        {'$set': {
+          'dishes.$.name': name,
+          'dishes.$.price': price,
+          'dishes.$.stock': stock,
+          'dishes.$.image': image,
+        }}
+      ,(err,response)=>{
+          console.log(response);
+          res.send(response);
+          console.log(err);
+        }) 
+         
+        
+        // req.user[currentSection].push({
+        //   name,
+        //   price,
+        //   stock,
+        //   image
+        // })
+        // req.user.save();
+    })
+
+
     app.get('/api/partner/menu',(req,res)=>{
         res.send(req.user.dishes);
     })

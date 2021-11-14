@@ -6,12 +6,6 @@ const userSchema=new mongoose.Schema({
     displayName:String,
     RestaurantName:String,
     RestaurantAddress:String,
-    sideDish:[dishes],
-    MainCourse:[dishes],
-    drink:[dishes],
-    soup:[dishes],
-    appetizer:[dishes],
-    dessert:[dishes],
     location:{
         type: {
             type: String, 

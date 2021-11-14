@@ -44,7 +44,7 @@ const Home = () => {
             <div className="home__heading heading-2">Choose Dishes</div>
             <div className="home__overflowfix">
                 <div className="home__dishes">
-                    {!!user[currentSection] && user[currentSection].dishes.map((dish,index)=>{
+                    {user && !!user[currentSection] && user[currentSection].dishes.map((dish,index)=>{
                         return <Dishes key={index} dish={dish} />
                     })}
                 </div>
@@ -54,8 +54,8 @@ const Home = () => {
             <>
             <div className="home__heading heading-2">Avaialble Dishes</div>
             <div className="home__overflowfix">
-                <div className={`${user.type==='Partner' && 'home__dishes--partner'} home__dishes`}>
-                    {!!user[currentSection] && user[currentSection].map((dish,index)=>{
+                <div className={`${user?.type==='Partner' && 'home__dishes--partner'} home__dishes`}>
+                    {user&&!!user[currentSection] && user[currentSection].map((dish,index)=>{
                         console.log(dish);
                         const {name,image,price,stock}=dish;
                         return <MenuCard key={index} title={name} src={image} price={price} stock={stock}/>

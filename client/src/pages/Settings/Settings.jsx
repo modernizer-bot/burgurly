@@ -11,6 +11,8 @@ import MenuCard from './MenuCard/MenuCard';
 import { Dialog } from "@material-ui/core";
 import MenuAddForm from './MenuAddForm/MenuAddForm';
 import { fetchUser } from '../../redux/auth/auth.action';
+import { fetchDishes } from '../../redux/dishes/dishes.action';
+
 const Settings = () => {
   const [name,setName]=useState('');
   const [address,setAddress]=useState('');
@@ -19,16 +21,20 @@ const Settings = () => {
   const [side,setSide]=useState('info');
   const [open,setopen]=useState(false);
   const user=useSelector((state)=>state.auth?.user);
+  const category=useSelector((state)=>state.category?.dishes);
   const dispatch = useDispatch();
 
   const [currentSection,setCurrentSection]=useState('MainCourse');
 
+
   useEffect(() => {
+    //remove this fectch User
     dispatch(fetchUser());
+    dispatch(fetchDishes(currentSection));
     return () => {
       
     }
-  }, [dispatch,open])
+  }, [currentSection,open,dispatch])
 
   const StyledItem=styled.div`
     position: relative;
@@ -151,9 +157,11 @@ const PseudoClass=css`
                   <Add/>
                   <div className="menuContainer__addCard-text">Add new dish</div>
                 </div>
-                {user[currentSection]?.map((dish)=>{
-                  const {name,image,price,stock}=dish;
+                {category.map((dishes)=>{
+                  return dishes?.dishes.map((dish)=>{
+                    const {name,image,price,stock}=dish;
                   return <MenuCard title={name} src={image} price={price} stock={stock} currentSection={currentSection}/>
+                  })
                 })}
                 
               </div>

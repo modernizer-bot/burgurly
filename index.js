@@ -7,6 +7,7 @@ const passport=require('passport');
 const keys = require('./config/keys');
 const mongoose=require('mongoose');
 require('./models/User');
+require('./models/Menu');
 require('./services/passport');
 app.use(cookieSession({
     age:1000 * 60 * 60 * 24,

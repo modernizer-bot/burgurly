@@ -52,11 +52,11 @@ const MenuEditForm = ({handleClose,currentSection,src,title,price,stock}) => {
     setImage(null);
   }
   const submit=()=>{
-    axios.post('/api/partner/menu',{
+    axios.post('/api/partner/menu/edit',{
       currentSection:currentSection,
       name:name,
-      price:price,
-      stock:stock,
+      price:Price,
+      stock:bowl,
       image:image
     })
     .then((response)=>console.log(response))
@@ -67,8 +67,8 @@ const MenuEditForm = ({handleClose,currentSection,src,title,price,stock}) => {
     <>
       <div className="menuEditForm">
         <div className="menuEditForm__inputdetails--inputContainer"><input type='text' placeholder='Enter Name of the dish' value={name} onChange={(e)=>setname(e.target.value)}/></div>
-        <div className="menuEditForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Price' value={price} onChange={(e)=>setPrice(e.target.value)}/></div>
-        <div className="menuEditForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Stock' value={stock} onChange={(e)=>setBowl(e.target.value)}/></div>
+        <div className="menuEditForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Price' value={Price} onChange={(e)=>setPrice(e.target.value)}/></div>
+        <div className="menuEditForm__inputdetails--inputContainer"><input type='number' placeholder='Enter Stock' value={bowl} onChange={(e)=>setBowl(e.target.value)}/></div>
         <div className="menuEditForm__inputdetails-upload">
         <label>
               <input

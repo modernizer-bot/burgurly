@@ -21,9 +21,7 @@ passport.use('Partner',new GoogleStrategy({
     clientSecret:keys.googleClientSecret,
     callbackURL:'/auth/partner/google/callback'
 },async(accesstoken,refresh_token, profile,done)=>{
-    console.log('called partner');
     const results=await User.findOne({googleId:profile.id});
-    console.log(results);
     if(results) done(null,results);
     else{
         const user=await new User({
@@ -44,9 +42,7 @@ passport.use('Customer',new GoogleStrategy({
     clientSecret:keys.googleClientSecret,
     callbackURL:'/auth/customer/google/callback'
 },async(accesstoken,refresh_token, profile,done)=>{
-    console.log('called customer');
     const results=await User.findOne({googleId:profile.id});
-    console.log(results);
     if(results) done(null,results);
     else{
         const user=await new User({

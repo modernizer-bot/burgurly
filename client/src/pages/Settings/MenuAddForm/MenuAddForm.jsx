@@ -53,7 +53,8 @@ const MenuAddForm = ({handleClose,currentSection}) => {
     setImage(null);
   }
   const submit=()=>{
-    axios.post('/api/partner/menu',{
+    console.log("currentSection: ",currentSection );
+    axios.post('/api/partner/menu/create',{
       currentSection:currentSection,
       name:name,
       price:price,
